@@ -34,6 +34,22 @@ class MySQLDatabase
 	    unset($this->connection);
 	} 
     }
+
+    public function mysql_prep($value)
+    {
+       $value = mysql_real_escape_string($value); 
+       return $value;
+    }
+
+    public function query($sql)
+    {
+	$result = mysql_query($sql, $this->connection);
+	if(!$result)
+	{
+	    die('Database query failed: '.mysql_errors());	
+	}
+	return $result;
+    }
 }
 
 $database = new MySQLDatabase();
