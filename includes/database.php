@@ -35,10 +35,30 @@ class MySQLDatabase
 	} 
     }
 
-    public function mysql_prep($value)
+    public function num_rows($result)
+    {
+       return mysql_num_rows($result); 
+    }
+
+    public function insert_id()
+    {
+       return mysql_insert_id($this->connection); 
+    }
+
+    public function affected_rows()
+    {
+       return mysql_insert_id($this->connection); 
+    }
+
+    public function escape_value($value)
     {
        $value = mysql_real_escape_string($value); 
        return $value;
+    }
+
+    public function fetch_array($result)
+    {
+	return mysql_fetch_array($result);
     }
 
     public function query($sql)
